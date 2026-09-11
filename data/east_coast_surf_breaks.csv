@@ -1,0 +1,169 @@
+break_name,state,region,latitude,longitude,notes
+Higgins Beach,ME,Southern Maine,43.5850,-70.2900,Popular beach break near Portland
+Long Sands Beach,ME,Southern Maine,43.1670,-70.6060,York ME - consistent beach break
+Rye Beach,NH,New Hampshire,42.9800,-70.7460,
+The Wall,NH,New Hampshire,42.8860,-70.8140,Main NH break when points aren't working
+Hampton Beach,NH,New Hampshire,42.9010,-70.8130,
+Ogunquit Beach,ME,Southern Maine,43.2470,-70.5960,
+White Crest Beach (Wellfleet),MA,Cape Cod,41.9280,-69.9960,"Aka ""Four Mile"" - best on the Cape"
+Nauset Beach,MA,Cape Cod,41.7370,-69.9550,Orleans
+Head of the Meadow Beach,MA,Cape Cod,42.0530,-70.0670,Truro
+Cisco Beach,MA,Nantucket,41.2470,-70.0700,
+Good Harbor Beach,MA,North Shore (Gloucester),42.6070,-70.6620,
+Nantasket Beach,MA,South Shore (Hull),42.2810,-70.8990,
+Easton's (First) Beach,RI,Newport,41.4870,-71.2930,
+Sachuest (Second) Beach,RI,Middletown,41.4870,-71.2530,
+Ruggles,RI,Newport,41.4780,-71.3130,Legendary big-swell break
+Narragansett Town Beach,RI,Narragansett,41.4300,-71.4520,
+Point Judith,RI,Narragansett,41.3620,-71.4830,Series of distinct breaks
+Matunuck,RI,South County,41.3800,-71.5580,"Three breaks: Deep Hole, Trestles, The Point"
+Montauk (Ditch Plains),NY,Long Island,41.0330,-71.9280,Most iconic NY break
+Amagansett,NY,Long Island,40.9720,-72.1420,Less crowded than Montauk proper
+Long Beach,NY,Long Island,40.5880,-73.6580,"Well known LI break, jetties"
+Lido Beach,NY,Long Island,40.5880,-73.6270,
+Gilgo Beach,NY,Long Island,40.6280,-73.3860,
+Long Beach (Rockaway),NY,Long Island,40.5850,-73.7500,
+Rockaway Beach,NY,NYC,40.5830,-73.8150,Closest break to NYC
+Manasquan,NJ,Jersey Shore,40.1050,-74.0330,
+Belmar,NJ,Jersey Shore,40.1770,-74.0130,
+Asbury Park,NJ,Jersey Shore,40.2200,-74.0020,
+Long Branch,NJ,Jersey Shore,40.3040,-73.9880,
+Seaside Heights,NJ,Jersey Shore,39.9420,-74.0740,
+Ship Bottom (LBI),NJ,Long Beach Island,39.6510,-74.1830,
+Atlantic City,NJ,South Jersey,39.3640,-74.4230,
+Cape May,NJ,South Jersey,38.9350,-74.9060,
+Rehoboth Beach,DE,Delaware,38.7210,-75.0760,
+Indian River Inlet,DE,Delaware,38.6170,-75.0680,
+Bethany Beach,DE,Delaware,38.5390,-75.0550,
+Fenwick Island,DE,Delaware,38.4610,-75.0510,
+Ocean City,MD,Maryland,38.3370,-75.0850,
+Virginia Beach,VA,Virginia,36.8530,-75.9780,
+Sandbridge,VA,Virginia,36.7710,-75.9440,
+Kitty Hawk,NC,Outer Banks,36.0630,-75.7010,
+Nags Head,NC,Outer Banks,35.9570,-75.6240,
+Kill Devil Hills,NC,Outer Banks,36.0300,-75.6760,
+Rodanthe,NC,Outer Banks (Hatteras),35.5940,-75.4680,
+Cape Hatteras,NC,Outer Banks,35.2530,-75.5280,World-class when it's on
+S-Turns (Cape Hatteras),NC,Outer Banks,35.2600,-75.5340,"Buxton sandbar break, very consistent"
+Ocracoke,NC,Outer Banks,35.1130,-75.9820,
+Wrightsville Beach,NC,Wilmington area,34.2080,-77.7970,
+Carolina Beach,NC,Wilmington area,34.0350,-77.8930,
+Folly Beach,SC,Charleston area,32.6550,-79.9400,
+Isle of Palms,SC,Charleston area,32.7850,-79.7830,
+Myrtle Beach,SC,Grand Strand,33.6890,-78.8860,
+Tybee Island,GA,Savannah area,32.0080,-80.8460,
+St. Simons Island,GA,Golden Isles,31.1580,-81.3860,
+Jacksonville Beach,FL,North Florida,30.2850,-81.3930,
+Hannah Park/Mayport Poles,FL,North Florida,30.3960,-81.4050,
+St. Augustine,FL,North Florida,29.9010,-81.3120,
+Flagler Beach,FL,North Florida,29.4760,-81.1270,
+Main Street Pier (Daytona Beach),FL,Central Florida,29.1500,-80.9700,Daytona's go-to spot; north side called Pier Bowls
+Ponce Inlet,FL,Central Florida,29.0810,-80.9270,"Powerful beach break, experienced surfers"
+New Smyrna Beach,FL,Central Florida,29.0260,-80.9270,High shark activity but great waves
+Cocoa Beach,FL,Space Coast,28.3200,-80.6080,"Iconic FL break, Ron Jon country"
+Sebastian Inlet,FL,Space Coast,27.8600,-80.4480,Renowned FL point break
+Melbourne Beach,FL,Space Coast,28.0780,-80.5590,
+Jupiter,FL,South Florida,26.9340,-80.0670,
+West Palm Beach,FL,South Florida,26.7150,-80.0430,
+Boynton Beach,FL,South Florida,26.5260,-80.0480,
+Fort Lauderdale,FL,South Florida,26.1220,-80.1070,
+Miami Beach,FL,South Florida,25.7900,-80.1300,
+Ponte Vedra Beach,FL,North Florida,30.2378,-81.3859,Consistent beach break north FL
+Vilano Beach,FL,North Florida,29.9163,-81.3095,
+Matanzas Inlet,FL,North Florida,29.7180,-81.2286,
+Crescent Beach,FL,North Florida,29.7930,-81.2510,
+Little Talbot Island,FL,North Florida,30.4419,-81.4028,
+Atlantic Beach,FL,North Florida,30.3336,-81.3987,Fun playful peaks
+Bethune Beach,FL,Central Florida,28.9280,-80.8990,
+Canova Beach,FL,Space Coast,28.1500,-80.5990,
+Satellite Beach,FL,Space Coast,28.1758,-80.5893,"Quality sandbars, esp winter cold fronts"
+Spanish House,FL,Space Coast,28.0700,-80.5650,"Near Sebastian Inlet, local landmark break"
+Jetty Park (Port Canaveral),FL,Space Coast,28.4080,-80.5960,
+Fort Pierce Inlet,FL,Treasure Coast,27.4756,-80.2867,Powerful wedgey peaks
+Vero Beach,FL,Treasure Coast,27.6386,-80.3973,
+Jensen Beach,FL,Treasure Coast,27.2495,-80.2181,
+Hobe Sound,FL,Treasure Coast,27.0620,-80.1420,
+Stuart Rocks / Bathtub Reef,FL,Treasure Coast,27.1690,-80.1620,"Reef-influenced, intermediate friendly"
+Reef Road,FL,South Florida,26.7150,-80.0370,Florida's most powerful winter wave
+Juno Beach,FL,South Florida,26.8790,-80.0570,
+Lake Worth Pier,FL,South Florida,26.6150,-80.0330,
+Delray Beach,FL,South Florida,26.4610,-80.0620,
+Boca Raton (Red Reef),FL,South Florida,26.3480,-80.0670,
+Deerfield Beach,FL,South Florida,26.3184,-80.0839,
+Haulover,FL,South Florida,25.9040,-80.1220,
+Crescent Beach,ME,Southern Maine,43.559,-70.204,"Cape Elizabeth state park beach, gentle beach break"
+Reid State Park,ME,Midcoast Maine,43.796,-69.773,"Georgetown, remote east-facing beach break"
+Popham Beach,ME,Midcoast Maine,43.742,-69.797,Rivermouth sandbars near the Kennebec River mouth
+Scarborough Beach,ME,Southern Maine,43.554,-70.328,"Near Prouts Neck headland, just south of Higgins Beach"
+Fortunes Rocks,ME,Southern Maine,43.437,-70.366,"Biddeford, winter A-frame peaks"
+Gooch's Beach,ME,Southern Maine,43.346,-70.47,"Kennebunk's main beach, winter swell magnet"
+Wells Beach,ME,Southern Maine,43.321,-70.566,"Beginner-friendly, near Wells Harbor estuary"
+Ogunquit Rivermouth,ME,Southern Maine,43.25,-70.593,"Point break near Lobster Point, one of New England's best waves"
+Jenness Beach,NH,New Hampshire,43.008,-70.744,
+Wallis Sands Beach,NH,New Hampshire,43.037,-70.728,
+North Hampton State Beach,NH,New Hampshire,42.953,-70.802,
+Salisbury Beach,MA,North Shore,42.839,-70.819,
+Crane Beach,MA,North Shore (Ipswich),42.682,-70.759,
+Devereux Beach,MA,North Shore (Marblehead),42.497,-70.846,Reef break with lefts and rights
+Nahant Beach,MA,North Shore (Nahant),42.421,-70.928,
+Revere Beach,MA,Boston area,42.408,-70.992,
+Yirrell Beach,MA,Boston area (Winthrop),42.373,-70.956,
+Peggotty Beach,MA,South Shore (Scituate),42.193,-70.728,
+Coast Guard Beach,MA,Cape Cod (Eastham),41.836,-69.954,Just below Nauset Lighthouse
+Madaket Beach,MA,Nantucket,41.279,-70.166,"West end of Nantucket, favored in fall"
+South Beach (Katama),MA,Martha's Vineyard,41.361,-70.554,Consistent south-facing beach break
+Goosewing Beach,RI,South County (Little Compton),41.497,-71.159,Point breaks and sandbars near the MA line
+Bailey's Beach,RI,Newport,41.465,-71.316,"Beginner-friendly, Narragansett Bay side"
+Bonnet Point,RI,Narragansett,41.427,-71.433,"Point break, works on bigger hurricane swells"
+Monahan's Dock,RI,Narragansett,41.428,-71.448,"Heavy, slabby break near the seawall, Aug-Dec"
+Scarborough Beach,RI,Narragansett,41.39,-71.465,"Long rights, fewer crowds than the town beach"
+Pilgrim Avenue,RI,Narragansett,41.418,-71.452,Right-hand point break
+K38,RI,Narragansett (Galilee),41.368,-71.501,"Sheltered harbor spot, long lefts"
+Deep Hole,RI,South County (South Kingstown),41.375,-71.546,Sucky shorebreak right at low tide
+Moonstone Beach,RI,South County,41.376,-71.567,"Sandy, beginner-friendly stretch"
+Charlestown Breachway,RI,South County (Charlestown),41.345,-71.639,"Rocky breakwater, points on southerly swell"
+Misquamicut State Beach,RI,South County (Westerly),41.311,-71.757,
+Breezy Point,NY,NYC (Queens),40.557,-73.935,
+Jones Beach State Park,NY,Long Island,40.594,-73.51,
+Tobay Beach,NY,Long Island (Oyster Bay),40.611,-73.436,
+Robert Moses State Park,NY,Fire Island,40.632,-73.272,West end of Fire Island
+Kismet (Fire Island),NY,Fire Island,40.648,-73.245,
+Cupsogue Beach County Park,NY,Long Island (Westhampton),40.769,-72.735,"Remote, eastern Long Island"
+East Hampton (Main Beach),NY,Long Island (Hamptons),40.954,-72.183,
+Turtle Cove,NY,Long Island (Montauk),41.043,-71.887,Can hold up to 20 feet
+The Cove (Sandy Hook),NJ,Jersey Shore,40.465,-73.999,"Third jetty, faces NE"
+Seven Presidents Park,NJ,Jersey Shore (Long Branch),40.279,-73.999,
+8th Avenue Jetty,NJ,Jersey Shore (Asbury Park),40.216,-74.004,
+Bay Head,NJ,Jersey Shore,40.073,-74.046,
+Holgate,NJ,Long Beach Island,39.545,-74.24,"South end of LBI, wildlife refuge"
+Surf City,NJ,Long Beach Island,39.657,-74.178,
+Harvey Cedars,NJ,Long Beach Island,39.7,-74.133,
+Ocean City (7th Street),NJ,South Jersey,39.278,-74.574,
+Crystal Beach,NJ,South Jersey (Atlantic City),39.352,-74.436,
+Broadway Beach,NJ,South Jersey (Cape May),38.928,-74.92,
+The Cove,DE,Delaware,38.777,-75.093,Near Cape Henlopen
+Dewey Beach,DE,Delaware,38.691,-75.053,
+3R's Beach,DE,Delaware,38.635,-75.062,Delaware Seashore State Park
+Tower Road,DE,Delaware,38.528,-75.056,Near Bethany Beach
+48th Street,MD,Maryland,38.386,-75.078,Ocean City
+Assateague Island,MD,Maryland,38.235,-75.158,"North Assateague, undeveloped barrier island"
+15th Street Pier,VA,Virginia,36.858,-75.973,"Virginia Beach, mostly rights"
+1st Street Jetty,VA,Virginia,36.846,-75.975,"Virginia Beach, peeling left"
+Grandview,VA,Virginia (Hampton),37.045,-76.304,"Chesapeake Bay side, needs a big NE blow"
+Fishermans Island,VA,Virginia (Eastern Shore),37.105,-75.982,
+False Cape,VA,Virginia,36.62,-75.895,"Remote, south of Sandbridge near the NC line"
+Corolla,NC,Outer Banks,36.376,-75.828,
+Carova,NC,Outer Banks,36.535,-75.857,"4x4 beaches, no paved road access"
+Duck,NC,Outer Banks,36.177,-75.753,Near the Duck research pier
+Jennette's Pier,NC,Outer Banks (Nags Head),35.928,-75.618,"One of the OBX's oldest piers, consistent and beginner-friendly"
+Laundromats (Old Station),NC,Outer Banks (Kitty Hawk),36.073,-75.698,"Milepost 2, strong after storms"
+Irene's Inlet,NC,Outer Banks (Hatteras),35.652,-75.486,"Formed by Hurricane Irene in 2011, north of Rodanthe"
+Frisco Pier,NC,Outer Banks (Hatteras),35.235,-75.592,"Historic pier, storm damaged"
+Hatteras Inlet,NC,Outer Banks (Hatteras),35.205,-75.69,Jetty-influenced breaks
+The Washout,SC,Charleston area (Folly Beach),32.648,-79.966,"West end of Folly Beach, jettied beach break"
+Sullivan's Island,SC,Charleston area,32.766,-79.838,
+Pawleys Island,SC,Grand Strand,33.427,-79.12,
+Hunting Island,SC,Beaufort area,32.372,-80.431,
+East Beach,GA,Golden Isles (St. Simons Island),31.137,-81.366,
+Driftwood Beach,GA,Golden Isles (Jekyll Island),31.068,-81.391,
+Sea Island Beach,GA,Golden Isles,31.19,-81.345,

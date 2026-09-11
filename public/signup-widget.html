@@ -1,0 +1,125 @@
+<!--
+  East Coast Swell — SMS Surf Report signup widget
+
+  Paste this whole block into a Shopify "Custom Liquid" section/block on
+  whatever page or theme section you want the form to appear. It has no
+  external dependencies — just edit API_BASE_URL below to point at your
+  deployed backend (e.g. https://east-coast-swell-sms.onrender.com).
+-->
+<div id="ecs-signup" class="ecs-signup">
+  <form id="ecs-signup-form" novalidate>
+    <h3 class="ecs-title">Get the Surf Report by Text</h3>
+    <p class="ecs-sub">Wave height, period, direction &amp; wind for your closest East Coast break.</p>
+
+    <label class="ecs-label" for="ecs-phone">Phone number</label>
+    <input class="ecs-input" type="tel" id="ecs-phone" name="phone" inputmode="tel"
+           placeholder="(555) 555-0123" required />
+
+    <label class="ecs-label" for="ecs-zip">Zip code</label>
+    <input class="ecs-input" type="text" id="ecs-zip" name="zip" inputmode="numeric"
+           maxlength="5" placeholder="07740" required />
+
+    <fieldset class="ecs-fieldset">
+      <legend class="ecs-label">How often?</legend>
+      <label class="ecs-radio"><input type="radio" name="frequency" value="daily" checked /> Daily (6am)</label>
+      <label class="ecs-radio"><input type="radio" name="frequency" value="weekly" /> Weekly (Sunday evening)</label>
+    </fieldset>
+
+    <label class="ecs-consent">
+      <input type="checkbox" id="ecs-consent" required />
+      <span>
+        By checking this box, I agree to receive recurring automated marketing text messages
+        (e.g. surf reports) from East Coast Swell at the phone number provided. Consent is not a
+        condition of any purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply
+        STOP to unsubscribe, HELP for help.
+      </span>
+    </label>
+
+    <button class="ecs-submit" type="submit">Sign me up</button>
+
+    <p class="ecs-status" id="ecs-status" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+<style>
+  .ecs-signup { max-width: 420px; font-family: inherit; color: #10333d; }
+  .ecs-title { margin: 0 0 4px; font-size: 1.25rem; }
+  .ecs-sub { margin: 0 0 16px; font-size: 0.9rem; opacity: 0.75; }
+  .ecs-label { display: block; font-size: 0.85rem; font-weight: 600; margin: 12px 0 4px; }
+  .ecs-input {
+    width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 1rem;
+    border: 1px solid #c7d6d8; border-radius: 6px; background: #fff;
+  }
+  .ecs-fieldset { border: none; padding: 0; margin: 12px 0 0; }
+  .ecs-radio { display: inline-flex; align-items: center; gap: 6px; margin-right: 16px; font-size: 0.9rem; }
+  .ecs-consent {
+    display: flex; gap: 8px; align-items: flex-start; margin-top: 16px; font-size: 0.75rem;
+    line-height: 1.35; opacity: 0.85;
+  }
+  .ecs-consent input { margin-top: 3px; }
+  .ecs-submit {
+    margin-top: 16px; width: 100%; padding: 12px; font-size: 1rem; font-weight: 600;
+    background: #0e5f6b; color: #fff; border: none; border-radius: 6px; cursor: pointer;
+  }
+  .ecs-submit:disabled { opacity: 0.6; cursor: default; }
+  .ecs-status { min-height: 1.2em; font-size: 0.9rem; margin-top: 10px; }
+  .ecs-status.ecs-ok { color: #0e6b2e; }
+  .ecs-status.ecs-err { color: #a3211b; }
+</style>
+
+<script>
+(function () {
+  // EDIT ME: your deployed backend's URL (no trailing slash).
+  var API_BASE_URL = 'https://YOUR-BACKEND-URL.onrender.com';
+
+  var form = document.getElementById('ecs-signup-form');
+  var status = document.getElementById('ecs-status');
+  var submitBtn = form.querySelector('.ecs-submit');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    status.className = 'ecs-status';
+    status.textContent = '';
+
+    var phone = document.getElementById('ecs-phone').value.trim();
+    var zip = document.getElementById('ecs-zip').value.trim();
+    var frequency = form.querySelector('input[name="frequency"]:checked').value;
+    var consent = document.getElementById('ecs-consent').checked;
+
+    if (!consent) {
+      status.className = 'ecs-status ecs-err';
+      status.textContent = 'Please check the box to agree to receive texts.';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    status.textContent = 'Signing you up…';
+
+    fetch(API_BASE_URL + '/api/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: phone, zip: zip, frequency: frequency }),
+    })
+      .then(function (res) {
+        return res.json().then(function (data) {
+          if (!res.ok) throw new Error(data.error || 'Signup failed.');
+          return data;
+        });
+      })
+      .then(function (data) {
+        status.className = 'ecs-status ecs-ok';
+        status.textContent =
+          'You\'re in! We matched you to ' + data.matchedBreak + ' (~' + data.distanceMiles +
+          ' mi away). First report coming ' + (frequency === 'daily' ? 'tomorrow at 6am.' : 'Sunday evening.');
+        form.reset();
+      })
+      .catch(function (err) {
+        status.className = 'ecs-status ecs-err';
+        status.textContent = err.message;
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+      });
+  });
+})();
+</script>

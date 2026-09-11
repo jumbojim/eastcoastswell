@@ -1,0 +1,27 @@
+{
+  "name": "east-coast-swell-sms",
+  "version": "1.0.0",
+  "description": "SMS surf report service for East Coast Swell (Billabong-style surf brand). Matches subscribers to the nearest surf break, pulls live marine data from Open-Meteo, and texts a plain-language surf report via Twilio.",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "worker": "node worker.js",
+    "import-breaks": "node scripts/import-breaks.js",
+    "send:daily": "node scripts/send-report.js daily",
+    "send:weekly": "node scripts/send-report.js weekly",
+    "migrate": "node scripts/migrate.js"
+  },
+  "dependencies": {
+    "csv-parse": "^5.5.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "node-cron": "^3.0.3",
+    "pg": "^8.12.0",
+    "twilio": "^5.3.0"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}

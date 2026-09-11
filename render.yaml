@@ -1,0 +1,54 @@
+# Render "Blueprint" — lets you spin up both services in one shot via
+# https://render.com/docs/blueprint-spec (New -> Blueprint, point at this repo).
+# Env vars marked sync:false are secrets you'll paste into the Render
+# dashboard yourself after the blueprint creates the services (never committed).
+
+services:
+  - type: web
+    name: east-coast-swell-sms-api
+    runtime: node
+    plan: starter
+    region: oregon
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_FROM_NUMBER
+        sync: false
+      - key: TWILIO_MESSAGING_SERVICE_SID
+        sync: false
+      - key: SIGNUP_ALLOWED_ORIGINS
+        sync: false
+      - key: PORT
+        value: 3000
+
+  - type: worker
+    name: east-coast-swell-sms-scheduler
+    runtime: node
+    plan: starter
+    region: oregon
+    buildCommand: npm install
+    startCommand: npm run worker
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_FROM_NUMBER
+        sync: false
+      - key: TWILIO_MESSAGING_SERVICE_SID
+        sync: false
+      - key: REPORT_TIMEZONE
+        value: America/New_York
+      - key: DAILY_SEND_CRON
+        value: 0 6 * * *
+      - key: WEEKLY_SEND_CRON
+        value: 0 18 * * 0
