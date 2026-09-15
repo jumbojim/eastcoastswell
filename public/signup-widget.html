@@ -107,9 +107,13 @@
       })
       .then(function (data) {
         status.className = 'ecs-status ecs-ok';
+        var farNote = data.far
+          ? ' That\'s a bit of a distance from that zip, but you\'re all set.'
+          : '';
         status.textContent =
           'You\'re in! We matched you to ' + data.matchedBreak + ' (~' + data.distanceMiles +
-          ' mi away). First report coming ' + (frequency === 'daily' ? 'tomorrow at 6am.' : 'Sunday evening.');
+          ' mi away).' + farNote + ' First report coming ' +
+          (frequency === 'daily' ? 'tomorrow at 6am.' : 'Sunday evening.');
         form.reset();
       })
       .catch(function (err) {

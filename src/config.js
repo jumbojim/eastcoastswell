@@ -24,6 +24,14 @@ export const config = {
   reportTimezone: process.env.REPORT_TIMEZONE || 'America/New_York',
   dailySendCron: process.env.DAILY_SEND_CRON || '0 6 * * *',
   weeklySendCron: process.env.WEEKLY_SEND_CRON || '0 18 * * 0',
+
+  matching: {
+    // Under this distance, auto-match silently (current behavior).
+    warnDistanceMiles: Number(process.env.MATCH_WARN_DISTANCE_MILES || 75),
+    // Beyond this distance, refuse to guess — the zip isn't meaningfully
+    // "near" any East Coast break (e.g. a California or Midwest zip).
+    maxDistanceMiles: Number(process.env.MATCH_MAX_DISTANCE_MILES || 250),
+  },
 };
 
 export function assertSendConfig() {

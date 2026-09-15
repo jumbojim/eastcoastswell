@@ -61,6 +61,16 @@ app.post('/api/signup', corsMiddleware, async (req, res) => {
       return res.status(500).json({ error: 'No surf breaks configured yet — contact support.' });
     }
 
+    if (nearest.distanceMiles > config.matching.maxDistanceMiles) {
+      return res.status(400).json({
+        error:
+          `That zip isn't close to any East Coast break we cover yet ` +
+          `(closest is ${nearest.match.break_name}, ${Math.round(nearest.distanceMiles)} mi away). ` +
+          `Reach out if you'd like us to add coverage near you.`,
+      });
+    }
+    const isFar = nearest.distanceMiles > config.matching.warnDistanceMiles;
+
     await pool.query(
       `insert into subscribers (phone, zip, lookup_latitude, lookup_longitude, matched_break_id, frequency, status, opt_in_timestamp)
        values ($1, $2, $3, $4, $5, $6, 'active', now())
@@ -79,6 +89,7 @@ app.post('/api/signup', corsMiddleware, async (req, res) => {
       ok: true,
       matchedBreak: nearest.match.break_name,
       distanceMiles: Math.round(nearest.distanceMiles),
+      far: isFar,
       frequency,
     });
   } catch (err) {
