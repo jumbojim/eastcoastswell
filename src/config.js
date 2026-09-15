@@ -32,6 +32,10 @@ export const config = {
     // "near" any East Coast break (e.g. a California or Midwest zip).
     maxDistanceMiles: Number(process.env.MATCH_MAX_DISTANCE_MILES || 250),
   },
+
+  // Max breaks one subscriber can follow at once (keeps the combined daily/
+  // weekly text — and the SMS ADD/REMOVE/BREAKS command list — short).
+  maxBreaksPerSubscriber: Number(process.env.MAX_BREAKS_PER_SUBSCRIBER || 3),
 };
 
 export function assertSendConfig() {

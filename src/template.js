@@ -110,26 +110,30 @@ function conditionsSentence(summary) {
 }
 
 /**
- * Build today's daily report sentence for one break.
- * @param {string} breakName
- * @param {Array} hourlyRecords full hourly array from getHourlyConditions
- * @param {string} todayDateStr "YYYY-MM-DD" in the report timezone
+ * Build one break's line for a daily message, e.g.
+ * "Long Branch: waist-to-chest high (3ft @ 8s from the SE). Wind: light and manageable, 8mph NW."
  */
-export function buildDailyMessage(breakName, hourlyRecords, todayDateStr) {
+export function buildDailySnippet(breakName, hourlyRecords, todayDateStr) {
   const summary = summarizeWindow(amWindow(hourlyRecords, todayDateStr));
-  const sentence = conditionsSentence(summary);
-  return `East Coast Swell: ${breakName} this morning — ${sentence} Reply STOP to unsubscribe.`;
+  return `${breakName}: ${conditionsSentence(summary)}`;
 }
 
 /**
- * Build the weekly report: highlights the best-looking day in the next 7,
- * plus a one-line rest-of-week outlook.
- * @param {string} breakName
- * @param {Array} hourlyRecords full hourly array from getHourlyConditions (>=7 days)
- * @param {string[]} next7DateStrs array of 7 "YYYY-MM-DD" strings starting today, in order
- * @param {string[]} dayLabels matching human day labels, e.g. ["Today","Tue","Wed",...]
+ * Build today's daily report for one subscriber, covering 1+ breaks.
+ * @param {Array<{breakName: string, hourlyRecords: Array}>} breakReports
+ * @param {string} todayDateStr "YYYY-MM-DD" in the report timezone
  */
-export function buildWeeklyMessage(breakName, hourlyRecords, next7DateStrs, dayLabels) {
+export function buildDailyMessage(breakReports, todayDateStr) {
+  const snippets = breakReports.map((r) => buildDailySnippet(r.breakName, r.hourlyRecords, todayDateStr));
+  return `East Coast Swell, this morning — ${snippets.join(' ')} Reply STOP to unsubscribe.`;
+}
+
+/**
+ * Build one break's weekly outlook. `compact` (used when a subscriber follows
+ * more than one break, to keep the combined text a reasonable length) drops
+ * the "rest of week" list and keeps just the best-day sentence.
+ */
+export function buildWeeklySnippet(breakName, hourlyRecords, next7DateStrs, dayLabels, { compact = false } = {}) {
   const daySummaries = next7DateStrs.map((dateStr, i) => ({
     dateStr,
     label: dayLabels[i],
@@ -141,12 +145,16 @@ export function buildWeeklyMessage(breakName, hourlyRecords, next7DateStrs, dayL
     .map((d) => ({ ...d, score: scoreDay(d.summary) }));
 
   if (!scored.length) {
-    return `East Coast Swell weekly outlook for ${breakName}: forecast data wasn't available this week. Reply STOP to unsubscribe.`;
+    return `${breakName}: forecast data wasn't available this week.`;
   }
 
   scored.sort((a, b) => b.score - a.score);
   const best = scored[0];
   const bestSentence = conditionsSentence(best.summary);
+
+  if (compact) {
+    return `${breakName}: best day looks like ${best.label} — ${bestSentence}`;
+  }
 
   const others = scored
     .filter((d) => d.dateStr !== best.dateStr)
@@ -156,10 +164,22 @@ export function buildWeeklyMessage(breakName, hourlyRecords, next7DateStrs, dayL
 
   const outlook = others ? ` Rest of week: ${others}.` : '';
 
-  return (
-    `East Coast Swell weekly outlook for ${breakName}: best day looks like ${best.label} — ${bestSentence}` +
-    `${outlook} Reply STOP to unsubscribe.`
+  return `${breakName}: best day looks like ${best.label} — ${bestSentence}${outlook}`;
+}
+
+/**
+ * Build the weekly report for one subscriber, covering 1+ breaks. Multi-break
+ * texts use the compact per-break form so the total stays readable.
+ * @param {Array<{breakName: string, hourlyRecords: Array}>} breakReports
+ * @param {string[]} next7DateStrs array of 7 "YYYY-MM-DD" strings starting today, in order
+ * @param {string[]} dayLabels matching human day labels, e.g. ["Today","Tue","Wed",...]
+ */
+export function buildWeeklyMessage(breakReports, next7DateStrs, dayLabels) {
+  const compact = breakReports.length > 1;
+  const snippets = breakReports.map((r) =>
+    buildWeeklySnippet(r.breakName, r.hourlyRecords, next7DateStrs, dayLabels, { compact })
   );
+  return `East Coast Swell weekly outlook — ${snippets.join(' ')} Reply STOP to unsubscribe.`;
 }
 
 /** Simple desirability score: rewards a solid, ridable size and penalizes wind. */

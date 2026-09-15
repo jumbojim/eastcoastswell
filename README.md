@@ -13,7 +13,7 @@ Shopify page (public/signup-widget.html)
 Express API (server.js) ── zip → lat/long (Zippopotam) ── nearest break (haversine vs. breaks table)
         │
         ▼
-Postgres (Supabase): breaks, subscribers, message_log, send_failures
+Postgres (Supabase): breaks, subscribers, subscriber_breaks, message_log, send_failures
         ▲
         │  reads subscribers grouped by break
 worker.js (node-cron, timezone-aware)
@@ -30,14 +30,14 @@ threshold/lookup-table logic, deterministic and easy to tune.
 
 ## Project layout
 
-- `server.js` — Express API: signup endpoint + Twilio inbound webhook (STOP/START)
+- `server.js` — Express API: signup endpoint + Twilio inbound webhook (STOP/START, BREAKS/ADD/REMOVE)
 - `worker.js` — long-running scheduler (node-cron, timezone-aware) that triggers sends
 - `scripts/send-report.js` — CLI: `node scripts/send-report.js daily|weekly` (manual test sends, or use with Render's native Cron Job instead of worker.js)
 - `scripts/import-breaks.js` — loads `data/east_coast_surf_breaks.csv` into the `breaks` table
 - `scripts/migrate.js` — applies `db/schema.sql`
 - `src/` — geocoding, nearest-break matching, Open-Meteo integration, message templates, Twilio wrapper, db pool, config
 - `public/signup-widget.html` — self-contained signup form to paste into a Shopify Custom Liquid block
-- `db/schema.sql` — Postgres schema (breaks, subscribers, message_log, send_failures)
+- `db/schema.sql` — Postgres schema (breaks, subscribers, subscriber_breaks, message_log, send_failures)
 - `render.yaml` — Render Blueprint (API web service + scheduler background worker)
 
 ## Local development
@@ -65,6 +65,23 @@ curl -X POST http://localhost:3000/api/signup \
   -H 'Content-Type: application/json' \
   -d '{"phone":"7325550123","zip":"07740","frequency":"daily"}'
 ```
+
+## Following more than one break
+
+A subscriber isn't limited to the single break the signup form matches them
+to (capped at `MAX_BREAKS_PER_SUBSCRIBER`, default 3) — they manage the rest
+entirely over SMS, no web UI or login involved, since the inbound webhook
+already authenticates for free (only the phone that owns the number can text
+from it):
+
+- `BREAKS` — lists the breaks they currently follow, numbered
+- `ADD <zip>` — adds the nearest break to that zip they aren't already following
+- `REMOVE <number or name>` — removes one, e.g. `REMOVE 2` or `REMOVE Jax Beach`
+
+Every command is a single self-contained message — there's no multi-step
+"reply with a number" flow to track state for. Whoever follows more than one
+break gets everything in **one combined text** per send (see
+`src/sendReport.js` / `src/template.js`), not a separate text per break.
 
 ## Editing the surf break list
 

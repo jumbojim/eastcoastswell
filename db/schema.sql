@@ -20,7 +20,11 @@ create table if not exists subscribers (
   zip                text not null,
   lookup_latitude    double precision,
   lookup_longitude   double precision,
-  matched_break_id   integer references breaks(id),
+  matched_break_id   integer references breaks(id), -- legacy: first/primary break from
+                                                      -- before multi-break support. No
+                                                      -- longer written to; superseded by
+                                                      -- subscriber_breaks below. Kept so we
+                                                      -- don't drop a populated column.
   frequency          text not null check (frequency in ('daily', 'weekly')),
   status             text not null default 'active' check (status in ('active', 'unsubscribed')),
   opt_in_timestamp   timestamptz not null default now(),
@@ -30,11 +34,33 @@ create table if not exists subscribers (
   updated_at         timestamptz not null default now()
 );
 
-create index if not exists idx_subscribers_break_freq_status
-  on subscribers (matched_break_id, frequency, status);
-
 create index if not exists idx_subscribers_status
   on subscribers (status);
+
+-- Superseded by idx_subscriber_breaks_break below now that break<->subscriber
+-- is many-to-many; drop if it exists from an earlier deploy.
+drop index if exists idx_subscribers_break_freq_status;
+
+-- One row per (subscriber, break) they follow — replaces the old
+-- one-break-per-subscriber assumption (subscribers.matched_break_id).
+-- Application code enforces the max-breaks-per-subscriber cap; nothing here.
+create table if not exists subscriber_breaks (
+  id             serial primary key,
+  subscriber_id  integer not null references subscribers(id) on delete cascade,
+  break_id       integer not null references breaks(id) on delete cascade,
+  created_at     timestamptz not null default now(),
+  constraint uq_subscriber_breaks unique (subscriber_id, break_id)
+);
+
+create index if not exists idx_subscriber_breaks_subscriber on subscriber_breaks (subscriber_id);
+create index if not exists idx_subscriber_breaks_break on subscriber_breaks (break_id);
+
+-- One-time backfill: carry forward anyone's existing single break into the
+-- new table. Safe to re-run (ON CONFLICT DO NOTHING).
+insert into subscriber_breaks (subscriber_id, break_id)
+select id, matched_break_id from subscribers
+where matched_break_id is not null
+on conflict (subscriber_id, break_id) do nothing;
 
 create table if not exists message_log (
   id                serial primary key,
